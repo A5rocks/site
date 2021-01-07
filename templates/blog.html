@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+
+{% block title %}Weird blog thing{% endblock title %}
+
+{% block content %}
+<h1>Weird blog thing.</h1>
+<h4>Feed <a href="atom.xml">here</a>!</h4>
+<ul>
+	{% for page in section.pages | sort(attribute="updated") | reverse %}
+	<li><a href="{{ page.permalink | safe }}">{{ page.title }}</a></li>
+	{% endfor %}
+</ul>
+{% endblock content %}
