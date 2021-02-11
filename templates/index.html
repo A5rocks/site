@@ -3,5 +3,89 @@
 {% block title %}Some weird site{% endblock title %}
 
 {% block content %}
-Check out the <a href="/posts/">blog</a>, or don't, I guess.
+<style type="text/css">
+	@font-face {
+		font-family: PTSerif;
+		src: url(/fonts/PTSerif.ttf);
+	}
+
+	html, body {
+		margin: 0;
+		padding: 0;
+		height: 100%;
+		width: 100%;
+	}
+
+	body {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr 1fr;
+		grid-template-areas: "intro posts" "footer posts";
+	}
+
+	#intro {
+		grid-area: intro;
+		background-color: #3e3e3e;
+		color: #ffffff;
+		display: flex;
+		flex-direction: column-reverse;
+	}
+
+	#posts {
+		grid-area: posts;
+		background-color: #5d5d5d;
+		color: #ffffff;
+	}
+
+	#footer {
+		grid-area: footer;
+		background-color: #3e3e3e;
+		color: #ffffff;
+	}
+
+	.content {
+		text-align: center;
+		color: #ffffff;
+		font-family: PTSerif, serif;
+
+		/* inspired by https://jrl.ninja/etc/1/, with changes */
+		max-width: 50ch;
+		padding: 2ch;
+		margin: auto;
+	}
+
+	.post {
+		border-bottom-style: dashed;
+		border-top-style: dashed;
+	}
+
+	a {
+		color: #d2738a;
+	}
+
+	::selection {
+		background-color: #ff4f00;
+	}
+
+	h1,h2,h3,h4,h5,h6 {
+		font-family: "Helvetica", sans-serif;
+	}
+</style>
+
+<div id="intro">
+	<h1 style="text-align: center; padding: 2ch;">A5rocks</h1>
+</div>
+<div id="posts">
+	{% set blog_section = get_section(path="posts/_index.md") %}
+	{% for page in blog_section.pages | sort(attribute="updated") | reverse %}
+	<div class="content post">
+		<h3><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h3>
+		{{ page.content | truncate(length=180, end="...") | safe }}
+	</div>
+	{% endfor %}
+</div>
+<div id="footer">
+	<p class="content"><a href="https://github.com/A5rocks/site">Check out the source code...</a></p>
+	<p class="content"><a href="https://github.com/A5rocks">Or my GitHub profile.</a></p>
+</div>
 {% endblock content %}
