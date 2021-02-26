@@ -3,6 +3,7 @@
 <head>
 	<title>{% block title %}{% endblock %}</title>
 	<link rel="alternate" type="application/atom+xml" title="stupid blog posts from a5" href="{{ get_url(path="posts/atom.xml", trailing_slash=false) }}">
+	<link rel="stylesheet" href="/stylesheet.css">
 	{% block metadata %}
 	<meta property="theme-color" content="#c1b492" />
 	<meta property="og:title" content="{{ page.title | default(value=section.title | default(value="helvetica.moe")) }}" />

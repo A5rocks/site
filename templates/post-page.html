@@ -14,7 +14,9 @@
 {% endblock metadata %}
 
 {% block content %}
-	<h1>{{ page.title }}</h1>
-	<p>Created on <strong>{{ page.date }}</strong> | Last edited <strong>{{ page.updated }}</strong></p>
-	{{ page.content | safe }}	
+	<div class="content">
+		<h1>{{ page.title }}</h1>
+		<p>Created on <strong>{{ page.date }}</strong> | Last edited <strong>{{ page.updated }}</strong></p>
+		{{ page.content | safe }}
+	</div>
 {% endblock content %}

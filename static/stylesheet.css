@@ -1,0 +1,46 @@
+@font-face {
+	font-family: PTSerif;
+	src: url(/fonts/PTSerif.ttf);
+}
+
+html, body {
+	margin: 0;
+	padding: 0;
+	height: 100%;
+	width: 100%;
+	background-color: #3e3e3e;
+	color: #ffffff;
+}
+
+.content {
+	/* inspired by https://jrl.ninja/etc/1/, with changes */
+	max-width: 70ch;
+	padding: 2ch;
+	margin: auto;
+}
+
+/* code blocks shouldn't have these */
+.content > :not(pre) {
+	text-align: center;
+	font-family: PTSerif, serif;
+}
+
+.content > pre {
+	font-family: monospace;
+	padding-top: 0.5ch;
+	padding-bottom: 0.5ch;
+}
+
+a {
+	color: #d2738a;
+}
+
+/* a little too garish...
+::selection {
+	background-color: #ff4f00;
+}
+*/
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Helvetica", sans-serif;
+}

@@ -4,18 +4,6 @@
 
 {% block content %}
 <style type="text/css">
-	@font-face {
-		font-family: PTSerif;
-		src: url(/fonts/PTSerif.ttf);
-	}
-
-	html, body {
-		margin: 0;
-		padding: 0;
-		height: 100%;
-		width: 100%;
-	}
-
 	body {
 		display: grid;
 		grid-template-columns: 1fr 1fr;
@@ -26,7 +14,6 @@
 	#intro {
 		grid-area: intro;
 		background-color: #3e3e3e;
-		color: #ffffff;
 		display: flex;
 		flex-direction: column-reverse;
 	}
@@ -34,24 +21,12 @@
 	#posts {
 		grid-area: posts;
 		background-color: #5d5d5d;
-		color: #ffffff;
+		overflow: auto;
 	}
 
 	#footer {
 		grid-area: footer;
 		background-color: #3e3e3e;
-		color: #ffffff;
-	}
-
-	.content {
-		text-align: center;
-		color: #ffffff;
-		font-family: PTSerif, serif;
-
-		/* inspired by https://jrl.ninja/etc/1/, with changes */
-		max-width: 50ch;
-		padding: 2ch;
-		margin: auto;
 	}
 
 	.post {
@@ -59,16 +34,14 @@
 		border-top-style: dashed;
 	}
 
-	a {
-		color: #d2738a;
+	.content {
+		max-width: 50ch;
 	}
 
-	::selection {
-		background-color: #ff4f00;
-	}
-
-	h1,h2,h3,h4,h5,h6 {
-		font-family: "Helvetica", sans-serif;
+	@media screen and (max-width: 640px) {
+		body {
+			display: block;
+		}
 	}
 </style>
 
