@@ -1,4 +1,5 @@
 @font-face {
+	font-display: block;
 	font-family: PTSerif;
 	src: url(/fonts/PTSerif.ttf);
 }
@@ -19,24 +20,6 @@ html, body {
 	margin: auto;
 }
 
-@media screen and (max-width: 640px) {
-	.content {
-		max-width: auto;
-		font-size: 120%;
-		margin: 2ch;
-		max-width: initial;
-	}
-}
-
-@media screen and (max-aspect-ratio: 1/1) {
-	.content {
-		max-width: auto;
-		font-size: 120%;
-		margin: 2ch;
-		max-width: initial;
-	}
-}
-
 
 /* code blocks shouldn't have these */
 .content > :not(pre) {
@@ -48,10 +31,17 @@ html, body {
 	padding: 0.5ch;
 	margin-left: 5ch;
 	margin-right: 5ch;
+	font-size: 80%;
+}
+
+@media screen and (max-width: 640px) {
+	.content > pre {
+		margin: initial;
+	}
 }
 
 a {
-	color: #d2738a;
+	color: #ff91ac;
 }
 
 /* a little too garish...

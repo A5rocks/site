@@ -6,6 +6,7 @@
 	<meta property="theme-color" content="#c1b492" />
 	<meta property="og:title" content="{{ page.extra.good_title | default(value=page.title) }}" />
 	<meta property="og:description" content="{{ page.content | safe | markdown | truncate(length=60, end="...") }}" />
+	<meta name="description" content="{{ page.content | safe | markdown | truncate(length=60, end="...") }}" />
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content="{{ page.permalink }}" />
 	<meta property="og:article:published_time" content="{{ page.date | date() }}" />

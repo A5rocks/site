@@ -1,14 +1,17 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 	<title>{% block title %}{% endblock %}</title>
 	<link rel="alternate" type="application/atom+xml" title="stupid blog posts from a5" href="{{ get_url(path="posts/atom.xml", trailing_slash=false) }}">
 	<link rel="stylesheet" href="/stylesheet.css">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	{% block metadata %}
 	<meta property="theme-color" content="#c1b492" />
 	<meta property="og:title" content="{{ page.title | default(value=section.title | default(value="helvetica.moe")) }}" />
 	<meta property="og:type" content="website" />
 	<meta property="og:url" content="{{ page.permalink | default(value=current_url) }}" />
+	<meta name="description" content="A5rocks's home on the information superhighway.">
 	{% endblock %}
 </head>
 <body>

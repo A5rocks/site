@@ -42,20 +42,6 @@
 		body {
 			display: block;
 		}
-
-		.content {
-			max-width: initial;
-		}
-	}
-
-	@media screen and (max-aspect-ratio: 1/1) {
-		body {
-			display: block;
-		}
-
-		.content {
-			max-width: initial;
-		}
 	}
 
 	@media print {
@@ -72,7 +58,7 @@
 	{% set blog_section = get_section(path="posts/_index.md") %}
 	{% for page in blog_section.pages | sort(attribute="updated") | reverse %}
 	<div class="content post">
-		<h3><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h3>
+		<h2><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h3>
 		{{ page.content | truncate(length=180, end="...") | safe }}
 	</div>
 	{% endfor %}
