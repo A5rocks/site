@@ -14,13 +14,13 @@ pattern matching as found in Elixir and other cool languages. Basically:
 ```elixir
 # this is just a map
 variable = %{
-	"a" => "b",
-	"c" => "d",
+    "a" => "b",
+    "c" => "d",
 }
 
 # pattern matching!
 %{
-	"a" => n
+    "a" => n
 } = variable
 
 # at this point, `n` has `"b"`:
@@ -35,7 +35,7 @@ Take for example, this function:
 
 ```py
 def f(x):
-	return x.y
+    return x.y
 ```
 
 In this case, I want to "pattern match" the `y` property out of the `x` value!
@@ -59,10 +59,10 @@ from typing import Protocol, TypeVar
 T = TypeVar("T")
 
 class ExtractY(Protocol[T]):
-	y: T
+    y: T
 
 def f(x: ExtractY[T]) -> T:
-	return x.y
+    return x.y
 ```
 
 To me, this has an odd sense of symmetry. Just a cool observation!

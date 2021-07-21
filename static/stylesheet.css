@@ -19,16 +19,35 @@ html, body {
 	margin: auto;
 }
 
+@media screen and (max-width: 640px) {
+	.content {
+		max-width: auto;
+		font-size: 120%;
+		margin: 2ch;
+		max-width: initial;
+	}
+}
+
+@media screen and (max-aspect-ratio: 1/1) {
+	.content {
+		max-width: auto;
+		font-size: 120%;
+		margin: 2ch;
+		max-width: initial;
+	}
+}
+
+
 /* code blocks shouldn't have these */
 .content > :not(pre) {
-	text-align: center;
 	font-family: PTSerif, serif;
 }
 
 .content > pre {
 	font-family: monospace;
-	padding-top: 0.5ch;
-	padding-bottom: 0.5ch;
+	padding: 0.5ch;
+	margin-left: 5ch;
+	margin-right: 5ch;
 }
 
 a {
