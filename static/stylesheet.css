@@ -28,16 +28,8 @@ html, body {
 
 .content > pre {
 	font-family: monospace;
-	padding: 0.5ch;
-	margin-left: 5ch;
-	margin-right: 5ch;
-	font-size: 80%;
-}
-
-@media screen and (max-width: 640px) {
-	.content > pre {
-		margin: initial;
-	}
+	padding: 1ch;
+	overflow-x: auto;
 }
 
 a {
