@@ -4,6 +4,14 @@ date = 2021-09-19
 updated = 2021-09-19
 +++
 
+Recently, I wanted a semaphore for Rust to limit the number of requests
+at once to a thread-based server. Sadly, there is none in the standard
+library, and so I have to write my own.
+
+I could use a threadpool, but that imposes a constant 50 threads,
+whereas my lazy system could burst to 50 requests but stay at only the
+main thread when needing to.
+
 ```rust
 use std::sync;
 
