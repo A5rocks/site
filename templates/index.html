@@ -59,7 +59,7 @@
 	{% for page in blog_section.pages | sort(attribute="updated") | reverse %}
 	<div class="content post">
 		<h2><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h2>
-		<p>{{ page.content | truncate(length=180, end="...") | safe }}</p>
+		<p>{{ page.content | split(pat="</p>") | first() | striptags() | safe }}</p>
 	</div>
 	{% endfor %}
 </div>
@@ -73,5 +73,6 @@
 			<a href="https://discord.gg/discord-developers">Discord Developers</a>.
 			Feel free to drop me a DM!
 	</p>
+	<p>Last built on {{ now() | date(format="%A, %B %-d") }}.</p>
 </div>
 {% endblock content %}

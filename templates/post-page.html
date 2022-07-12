@@ -5,8 +5,9 @@
 {% block metadata %}
 	<meta property="theme-color" content="#c1b492" />
 	<meta property="og:title" content="{{ page.extra.good_title | default(value=page.title) }}" />
-	<meta property="og:description" content="{{ page.content | safe | markdown | truncate(length=60, end="...") }}" />
-	<meta name="description" content="{{ page.content | safe | markdown | truncate(length=60, end="...") }}" />
+	<!-- TODO: use page.summary support -->
+	<meta property="og:description" content="{{ page.content | split(pat="</p>") | first() | striptags() | truncate(length=120) | safe }}" />
+	<meta name="description" content="{{ page.content | split(pat="</p>") | first() | striptags() | truncate(length=120) | safe }}" />
 	<meta property="og:type" content="article" />
 	<meta property="og:url" content="{{ page.permalink }}" />
 	<meta property="og:article:published_time" content="{{ page.date | date() }}" />
@@ -17,7 +18,7 @@
 {% block content %}
 	<div class="content">
 		<h1>{{ page.title }}</h1>
-		<p>Created on <strong>{{ page.date }}</strong> | Last edited <strong>{{ page.updated }}</strong></p>
+		<p>Created on <strong>{{ page.date | date(format="%A, %B %-d")}}</strong> | Last edited <strong>{{ page.updated | date(format="%A, %B %-d") }}</strong></p>
 		{{ page.content | safe }}
 	</div>
 {% endblock content %}
