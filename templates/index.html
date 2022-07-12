@@ -58,18 +58,18 @@
 	{% set blog_section = get_section(path="posts/_index.md") %}
 	{% for page in blog_section.pages | sort(attribute="updated") | reverse %}
 	<div class="content post">
-		<h2><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h3>
-		{{ page.content | truncate(length=180, end="...") | safe }}
+		<h2><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h2>
+		<p>{{ page.content | truncate(length=180, end="...") | safe }}</p>
 	</div>
 	{% endfor %}
 </div>
-<div id="footer">
-	<p class="content"><a href="https://github.com/A5rocks/site">Check out the source code...</a></p>
-	<p class="content"><a href="https://github.com/A5rocks">Or my GitHub profile.</a></p>
-	<p class="content">
+<div id="footer" class="content">
+	<p><a href="https://github.com/A5rocks/site">Check out the source code...</a></p>
+	<p><a href="https://github.com/A5rocks">Or my GitHub profile.</a></p>
+	<p>
 			I'm on Discord too: I'm A5rocks#9289, and you can find me on
 			<a href="https://discord.gg/0cDvIgU2voWn4BaD">Discord Bots</a>,
-			<a href="https://discord.gg/discord-api">Discord API</a>,
+			<a href="https://discord.gg/discord-api">Discord API</a>, and
 			<a href="https://discord.gg/discord-developers">Discord Developers</a>.
 			Feel free to drop me a DM!
 	</p>
