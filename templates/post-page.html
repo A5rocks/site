@@ -18,7 +18,12 @@
 {% block content %}
 	<div class="content">
 		<h1>{{ page.title }}</h1>
-		<p>Created on <strong>{{ page.date | date(format="%A, %B %-d")}}</strong> | Last edited <strong>{{ page.updated | date(format="%A, %B %-d") }}</strong></p>
+		<p>
+			Created <strong>{{ page.date | date(format="%Y-%-m-%-d") }}</strong>
+			{% if page.date != page.updated %}
+				| Last edited <strong>{{ page.updated | date(format="%Y-%-m-%-d") }}</strong>
+			{% endif %}
+		</p>
 		{{ page.content | safe }}
 	</div>
 {% endblock content %}
