@@ -3,30 +3,54 @@ const checkJSON = (content, target) => Object.values(content).some((v) => {
   else return v === target;
 })
 
+const consume = async (stream) => {
+  const r = await stream.getReader();
+  while (!(await r.read()).done) {}
+}
+
+class Handler {
+  constructor(callback) {
+    this.allowed = false;
+    this.callback = callback;
+  }
+
+  element() {
+    this.allowed = true;
+  }
+
+  async end() {
+    if (this.allowed) {
+      await this.callback();
+    }
+  }
+}
+
 const checkContent = {
-  "text/plain": async (response, target) => (await response.text()).includes(target),
-  "application/json": async (response, target) => checkJSON(await response.json(), target),
-  "text/html": async (response, target) => {
-    let allowed = false;
-    const f = () => { allowed = true; };
+  "text/plain": async (response, target, cb) => {
+    if ((await response.text()).includes(target)) await cb();
+  },
+  "application/json": async (response, target, cb) => {
+    if (checkJSON(await response.json(), target)) await cb();
+  },
+  "text/html": async (response, target, cb) => {
+    const handler = new Handler(cb);
 
-    await new HTMLRewriter()
-      .on(`a[href="${target}"]`, f)
-      .on(`img[href="${target}"]`, f)
-      .on(`video[href="${target}"]`, f)
-      .transform(response)
-      .text();
+    const rewriter = new HTMLRewriter()
+      .on(`a[href="${target}"]`, handler)
+      .on(`img[href="${target}"]`, handler)
+      .on(`video[href="${target}"]`, handler)
+      .onDocument(handler);
 
-    return allowed;
+    await consume(rewriter.transform(response).body);
   }
 };
 
 export async function onRequest({ env, request }) {
-  // should have JSON.
-  const body = await request.json();
+  // should have form encoded data.
+  const body = await request.formData();
 
   // required parameters
-  const missing = ["target", "source"].filter((name) => !(name in body));
+  const missing = ["target", "source"].filter((name) => !body.has(name));
   if (missing.length > 0) {
     return new Response(`Missing: \`${missing.join("\`, \`")}\`.`, { status: 400 });
   }
@@ -38,7 +62,7 @@ export async function onRequest({ env, request }) {
     const schemes = [
       "target",
       "source"
-    ].filter((x) => ["https:", "http:"].includes((new URL(body[x])).scheme));
+    ].filter((x) => ["https:", "http:"].includes((new URL(body.get(x))).scheme));
 
     if (schemes.length) {
       return new Response(`Incorrect URL scheme for: \`${schemes.join("\`, \`")}\`.`, { status: 400 });
@@ -50,8 +74,8 @@ export async function onRequest({ env, request }) {
 
 
   // The receiver SHOULD check that `target`` is a valid resource for which it can accept Webmentions.
-  const target = new URL(body.target);
-  const source = new URL(body.source);
+  const target = new URL(body.get("target"));
+  const source = new URL(body.get("source"));
 
   if (target.hostname !== "helvetica.moe" || !target.pathname.startsWith("/posts")) {
     return new Response("`target` should start with `https://helvetica.moe/posts/...`.");
@@ -69,11 +93,16 @@ export async function onRequest({ env, request }) {
 
   // The receiver SHOULD use per-media-type rules to determine
   // whether the source document mentions the target URL.
-  if (!(await checkContent[res.headers.get("Content-Type")](res, target.href))) {
-    return new Response("`source` is not mentioned in `target`.");
+  const contentType = res.headers.get("Content-Type").split(";")[0];
+  if (!["text/plain", "application/json", "text/html"].includes(contentType)) {
+    return new Response(`Unknown Content-Type ${res.headers.get("Content-Type")}`, { status: 400 });
   }
 
-  await env.webmentions.put(`${target.href} ${source.href}`, JSON.stringify(body));
+  await checkContent[contentType](
+    res,
+    target.href,
+    async () => await env.webmentions.put(`${target.href} ${source.href}`, "h")
+  )
 
   return new Response(request.method, { status: 202 });
 }
