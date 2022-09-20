@@ -13,6 +13,10 @@
 	<meta property="og:article:published_time" content="{{ page.date | date() }}" />
 	<meta property="og:article:modified_time" content="{{ page.updated | date() }}" />
 	<meta property="og:article:author:username" content="A5rocks" />
+
+	<link href="https://helvetica.moe/api/webmentions" rel="webmention" />
+	<!-- TODO: move this out into main template? -->
+	<link href={{ page.permalink }} rel="canonical" />
 {% endblock metadata %}
 
 {% block content %}
