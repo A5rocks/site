@@ -3,3 +3,6 @@ base_url = "https://helvetica.moe"
 # code highlighting
 [markdown]
 highlight_code = true
+
+[extra]
+webmentions_url = "https://helvetica.moe/api/webmentions"
