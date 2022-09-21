@@ -21,8 +21,8 @@ html, body {
 }
 
 
-/* code blocks shouldn't have these */
-.content > :not(pre) {
+/* code blocks and headings shouldn't have these */
+.content > :not(pre, h1, h2, h3, h4, h5, h6) {
 	font-family: PTSerif, serif;
 }
 

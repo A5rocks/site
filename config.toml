@@ -1,8 +1,13 @@
 base_url = "https://helvetica.moe"
 
+[[taxonomies]]
+name = "projects"
+feed = true
+
 # code highlighting
 [markdown]
 highlight_code = true
+external_links_no_follow = true
 
 [extra]
 webmentions_url = "https://helvetica.moe/api/webmentions"
