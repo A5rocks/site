@@ -29,7 +29,9 @@
 				| Last edited <strong>{{ page.updated | date(format="%Y-%-m-%-d") }}</strong>
 			{% endif %}
 		</p>
-		{% set projects = page.taxonomies | get(key="projects", default=[]) %}
+		{% if page.taxonomies is containing("projects") %}
+		<!-- TODO: get(key="projects", default=[]) -->
+		{% set projects = page.taxonomies | get(key="projects") %}
 		<p>Related to {{ projects | length }} project{{ projects | length | pluralize }}.</p>
 
 		{% if projects | length > 0 %}
@@ -39,14 +41,17 @@
 			{% endfor %}
 		</ul>
 		{% endif %}
+		{% endif %}
 
 		<hr />
 		{{ page.content | safe }}
 		<hr />
 
+		{% if page.taxonomies is containing("projects") %}
 		{% if "bots.gg" in projects %}
 		<p>This work was done as part of <a href="https://discord.bots.gg">discord.bots.gg</a>.</p>
 		<hr />
+		{% endif %}
 		{% endif %}
 
 		<h2>Mentions around the web</h2>
