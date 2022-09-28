@@ -3,21 +3,21 @@
 {% block title %}{{ page.title }}{% endblock title %}
 
 {% block metadata %}
-	<meta property="theme-color" content="#c1b492" />
-	<meta property="og:title" content="{{ page.extra.good_title | default(value=page.title) }}" />
+	<meta property="theme-color" content="#c1b492">
+	<meta property="og:title" content="{{ page.extra.good_title | default(value=page.title) }}">
 	<!-- TODO: use page.summary support -->
-	<meta property="og:description" content="{{ page.content | split(pat="</p>") | first() | striptags() | truncate(length=120) | safe }}" />
-	<meta name="description" content="{{ page.content | split(pat="</p>") | first() | striptags() | truncate(length=120) | safe }}" />
-	<meta property="og:type" content="article" />
-	<meta property="og:url" content="{{ page.permalink | safe }}" />
-	<meta property="og:article:published_time" content="{{ page.date | date() }}" />
-	<meta property="og:article:modified_time" content="{{ page.updated | date() }}" />
-	<meta property="og:article:author:username" content="A5rocks" />
+	<meta property="og:description" content="{{ page.content | split(pat="</p>") | first() | striptags() | truncate(length=120) | safe }}">
+	<meta name="description" content="{{ page.content | split(pat="</p>") | first() | striptags() | truncate(length=120) | safe }}">
+	<meta property="og:type" content="article">
+	<meta property="og:url" content="{{ page.permalink | safe }}">
+	<meta property="og:article:published_time" content="{{ page.date | date() }}">
+	<meta property="og:article:modified_time" content="{{ page.updated | date() }}">
+	<meta property="og:article:author:username" content="A5rocks">
 
-	<link href="{{ config.extra.webmentions_url | safe }}" rel="webmention" />
-	<link href="https://webmention.io/webmention?forward={{ config.extra.webmentions_url | safe }}" rel="pingback" />
+	<link href="{{ config.extra.webmentions_url | safe }}" rel="webmention">
+	<link href="https://webmention.io/webmention?forward={{ config.extra.webmentions_url | safe }}" rel="pingback">
 	<!-- TODO: move this out into main template? -->
-	<link href="{{ page.permalink | safe }}" rel="canonical" />
+	<link href="{{ page.permalink | safe }}" rel="canonical">
 {% endblock metadata %}
 
 {% block content %}
@@ -43,14 +43,14 @@
 		{% endif %}
 		{% endif %}
 
-		<hr />
+		<hr>
 		{{ page.content | safe }}
-		<hr />
+		<hr>
 
 		{% if page.taxonomies is containing("projects") %}
 		{% if "bots.gg" in projects %}
 		<p>This work was done as part of <a href="https://discord.bots.gg">discord.bots.gg</a>.</p>
-		<hr />
+		<hr >
 		{% endif %}
 		{% endif %}
 
