@@ -46,6 +46,21 @@ const checkContent = {
 };
 
 export async function onRequest({ env, request }) {
+  if (request.method === "GET") {
+    const target = (new URL(request.url)).searchParams.get('target');
+    if (!target) {
+      return new Response("Missing: \`target\`.", { status: 400 });
+    }
+
+    const objects = await env.webmentions.list({ prefix: target })
+
+    return new Response(JSON.stringify({
+      urls: objects.keys.map((key) => key.name.split(" ")[1]),
+      count: objects.keys.length,
+      truncated: !objects.list_complete,
+    }));
+  }
+
   // should have form encoded data.
   const body = await request.formData();
 
@@ -101,6 +116,7 @@ export async function onRequest({ env, request }) {
   await checkContent[contentType](
     res,
     target.href,
+    // todo: parse the body (of request or source) to find what to keep / mark this as? (like/comment)
     async () => await env.webmentions.put(`${target.href} ${source.href}`, "h")
   )
 
