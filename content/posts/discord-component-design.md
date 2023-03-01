@@ -1,8 +1,7 @@
 +++
 title = "Designing an interface for Discord components: A dash through prior work"
-# TODO: update these
-date = 2023-02-26
-updated = 2023-02-26
+date = 2023-02-28
+updated = 2023-02-28
 
 [taxonomies]
 projects = [ "library", "bot" ]
@@ -16,7 +15,6 @@ Here is a table of contents, in case this post gets too lengthy:
 
 #### Table of Contents
 
-<!-- TODO: ensure these links work! -->
  - [`hikari-yuyo`](#hikari-yuyo)
  - [`hikari-flare`](#hikari-flare)
  - [`discord.py`](#discord-py)
