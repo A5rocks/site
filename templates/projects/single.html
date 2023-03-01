@@ -5,6 +5,12 @@
 		{% if term.name == "bots.gg" %}
 		<h1><a href="https://discord.bots.gg">discord.bots.gg</a></h1>
 		<p>A bot list for Discord. I've been collaborating on this for years, at this point.</p>
+		{% elif term.name == "library" %}
+		<h1>Unknown Discord library</h1>
+		<p>A Discord library I've been working on. I can't stop getting distracted.</p>
+		{% elif term.name == "bot" %}
+		<h1>Unknown Discord bot</h1>
+		<p>A Discord bot I've been working on. I can't stop getting distracted.</p>
 		{% else %}
 		<!-- make zola error at build time -->
 		{{ term.error }}

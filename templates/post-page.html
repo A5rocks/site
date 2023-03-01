@@ -50,7 +50,15 @@
 		{% if page.taxonomies is containing("projects") %}
 		{% if "bots.gg" in projects %}
 		<p>This work was done as part of <a href="https://discord.bots.gg">discord.bots.gg</a>.</p>
-		<hr >
+		<hr>
+		{% endif %}
+		{% if "library" in projects %}
+		<p>This work was done as part of my so-far-unpublished Discord library.</p>
+		<hr>
+		{% endif %}
+		{% if "bot" in projects %}
+		<p>This work was done as part of my so-far-unpublished Discord bot.</p>
+		<hr>
 		{% endif %}
 		{% endif %}
 

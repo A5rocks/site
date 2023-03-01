@@ -14,12 +14,26 @@ html, body {
 }
 
 .content {
+	display: grid;
+	grid-template-columns: auto min(70ch, 100%) auto;
+	gap: 0;
+
 	/* inspired by https://jrl.ninja/etc/1/, with changes */
-	max-width: 70ch;
 	padding: 2ch;
 	margin: auto;
 }
 
+.content > * {
+	grid-column: 2;
+	padding: revert;
+	margin: revert;
+	margin-bottom: 0.5rem;
+	margin-top: 0.5rem;
+}
+
+.content > hr {
+	width: 85%;
+}
 
 /* code blocks and headings shouldn't have these */
 .content > :not(pre, h1, h2, h3, h4, h5, h6) {
@@ -31,6 +45,9 @@ html, body {
 	font-family: monospace;
 	padding: 1ch;
 	overflow-x: auto;
+	grid-column: 1 / 4;
+	width: max(70ch, 70%);
+	margin: auto;
 }
 
 a {
