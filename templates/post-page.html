@@ -58,6 +58,19 @@
 		{% endif %}
 
 		<h2>Mentions around the web</h2>
-		<p>... TODO ...</p>
+		{% if page.permalink is starting_with("https://helvetica.moe") %}
+		{% set mentions = load_data(url=config.extra.webmentions_url ~ "?target=" ~ page.permalink, format="json") %}
+		<p>Mentioned {{ mentions["count"] }} time{{ mentions["count"] | pluralize }}!</p>
+		<ul>
+		{% for mention in mentions["urls"] %}
+			<li>Mentioned by <a href="{{ mention | urlencode | safe }}">{{mention}}</a></li>
+		{% endfor %}
+		</ul>
+		{% if mentions["truncated"] %}
+		<p>Truncated! Pagination is not yet a thing, and might never be.
+		{% endif %}
+		{% else %}
+		<p>No mentions loaded as this was not built for <a href="https://helvetica.moe">https://helvetica.moe</a></p>
+		{% endif %}
 	</div>
 {% endblock content %}
