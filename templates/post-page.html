@@ -63,7 +63,7 @@
 		<p>Mentioned {{ mentions["count"] }} time{{ mentions["count"] | pluralize }}!</p>
 		<ul>
 		{% for mention in mentions["urls"] %}
-			<li>Mentioned by <a href="{{ mention | urlencode | safe }}">{{mention}}</a></li>
+			<li>Mentioned by <a href="{{ mention | urlencode | replace(from="%3A", to=":") | safe }}">{{mention}}</a></li>
 		{% endfor %}
 		</ul>
 		{% if mentions["truncated"] %}
