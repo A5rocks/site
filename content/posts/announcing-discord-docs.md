@@ -44,7 +44,8 @@ async def connect(client: AsyncClient):
 
 Essentially, I am just going through this flowchart:
 
-![Discord's documented gateway lifecycle](https://raw.githubusercontent.com/discord/discord-api-docs/e54e2c895e2973d79078dfe617b271c51082c7e3/images/gateway-lifecycle.svg)
+<!--I need to use an <img> tag and not markup so that this isn't in a <p> tag-->
+<img src="https://raw.githubusercontent.com/discord/discord-api-docs/e54e2c895e2973d79078dfe617b271c51082c7e3/images/gateway-lifecycle.svg" alt="Discord's documented gateway lifecycle"/>
 
 This means the next step is to start heartbeating (with some jitter) the moment I get the opcode 10 event. Can do! (NOTE: the Discord's docs note "In the first heartbeat, `jitter` is an offset value between 0 and `heartbeat_interval`" which is just wrong. Don't trust the documentation!!)
 

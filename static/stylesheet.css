@@ -50,6 +50,14 @@ html, body {
 	margin: auto;
 }
 
+.content > img {
+	padding: 1ch;
+	overflow-x: auto;
+	grid-column: 1 / 4;
+	width: max(70ch, 70%);
+	margin: auto;
+}
+
 a {
 	color: #ff91ac;
 }
