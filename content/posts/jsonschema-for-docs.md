@@ -2,6 +2,9 @@
 title = "I don't think JSONSchema is a good choice for documentation"
 date = 2023-07-05
 updated = 2023-07-05
+
+[taxonomies]
+projects = [ "library" ]
 +++
 
 Over the last week or so I've been working on making making Discord libraries easier [through a collection of JSONSchemas I plan to keep up to date](https://github.com/fleuralice/discord-docs).

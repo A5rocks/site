@@ -4,7 +4,7 @@ date = 2023-02-28
 updated = 2023-02-28
 
 [taxonomies]
-projects = [ "library", "bot" ]
+projects = [ "library" ]
 +++
 
 Discord components are a strange mix of stateless and stateful programming. In this blog post, I will cover many different library's implementations.
